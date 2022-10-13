@@ -1,9 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
-interface StringChecker { boolean checkString(String s); }
+interface StringChecker{ 
+  boolean checkString(String s); 
+}
 
-class ListExamples {
+class ListExamples implements StringChecker{
+
+  //overrides checkString so that it takes a string and checks if it contains "i"
+  @Override
+  public boolean checkString(String s){
+    return (s.contains("i"));
+  }
 
   // Returns a new list that has all the elements of the input list for which
   // the StringChecker returns true, and not the elements that return false, in
@@ -12,7 +20,7 @@ class ListExamples {
     List<String> result = new ArrayList<>();
     for(String s: list) {
       if(sc.checkString(s)) {
-        result.add(0, s);
+        result.add(s); // Used to be result.add(index: 0, s) but this adds the 
       }
     }
     return result;
@@ -40,7 +48,7 @@ class ListExamples {
     }
     while(index2 < list2.size()) {
       result.add(list2.get(index2));
-      index1 += 1;
+      index2 += 1; // bug was index1 += 1
     }
     return result;
   }
